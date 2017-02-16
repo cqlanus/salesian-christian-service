@@ -44,6 +44,7 @@ function buildVerifEmailBody(currentRequest, index){
   var form = FormApp.openById('1l4wIM_pKCEwVGoKUaE4k1IqeUwqs6dHjCQF6xjZ7vp8');
   var url = form.getPublishedUrl();
   var htmlBody = '<head><body>'
+    + '<img style="height:100px;width:100px;" src="http://salesian.schoolwires.net/cms/lib03/CA02001206/Centricity/Domain/2/SHS%20Seal%20New%20600x600.jpg"><br/>'
         + '<p>' + currentRequest.name + ' has requested verification for Christian Service Hours.</p>'
         + '<p>Here are the details of his service:</p>'
         + '<ul>'
@@ -78,9 +79,10 @@ function getVerificationStatus(idNumber){
     // Get range of the column in which ID numbers are located
   for (var i = 0; i < verificationData.length; i++){
     var index = verificationData[i].serviceIdNumber;
+    var verificationStatus = sheet.getRange((index), 19, 1);
     if (verificationData[i].emailSent == ''){
       Logger.log(verificationData[i].verification);
-      var verificationStatus = sheet.getRange((i + 2), 19, 1);
+      
       var emailSent = serviceOrgSheet.getRange((i+2), 4, 1);
       var emailBody;
       var emailSubject;
@@ -90,6 +92,7 @@ function getVerificationStatus(idNumber){
         
         verificationStatus.setValue('Verified'); 
         emailBody = '<head><body>'
+          + '<img style="height:100px;width:100px;" src="http://salesian.schoolwires.net/cms/lib03/CA02001206/Centricity/Domain/2/SHS%20Seal%20New%20600x600.jpg"><br/>'
         + '<p>' + approvalRequest[index].name + ',</p>'
         + '<p>' + approvalRequest[index].contactPerson + ' has verified the details of your Christian Service Hour submission.</p>'
         + '<p>Here are the details of your submission:</p>'
@@ -113,6 +116,7 @@ function getVerificationStatus(idNumber){
       else {
         verificationStatus.setValue('Denied');
         emailBody = '<head><body>'
+          + '<img style="height:100px;width:100px;" src="http://salesian.schoolwires.net/cms/lib03/CA02001206/Centricity/Domain/2/SHS%20Seal%20New%20600x600.jpg"><br/>'
         + '<p>' + approvalRequest[index].name + ',</p>'
         + '<p>Your recent Christian Service Hour submission has been denied by your service organization.</p>'
         + '<p>Here are the details of your submission:</p>'
@@ -139,6 +143,11 @@ function getVerificationStatus(idNumber){
     }
     else {
       Logger.log("Try Again.");
+     if (verificationData[i].verification == "Yes"){
+        // Mark the approval request sheet with "Verified" or "Denied"
+        
+        verificationStatus.setValue('Verified');  
+     }
     }
   }
 }

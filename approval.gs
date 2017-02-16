@@ -66,6 +66,7 @@ function buildApprovalEmailBody(currentRequest, index){
   
   var url = form.getPublishedUrl();
   var htmlBody = '<head><body>'
+  + '<img style="height:100px;width:100px;" src="http://salesian.schoolwires.net/cms/lib03/CA02001206/Centricity/Domain/2/SHS%20Seal%20New%20600x600.jpg"><br/>'
         + '<p>' + currentRequest.name + ' has received verification from his service organization and requests approval for Christian Service Hours.</p>'
         + '<p>Here are the details of his service:</p>'
         + '<ul>'
@@ -75,9 +76,9 @@ function buildApprovalEmailBody(currentRequest, index){
         + '<li>Service Organization: ' + currentRequest.serviceOrganization + '</li>'
         + '<li>Contact Name: ' + currentRequest.contactPerson + '</li>'
         + '<li>Description of Service: ' + currentRequest.description + '</li></ul><br>'
-        + '<li>Description of Service: ' + currentRequest.beneficiaries + '</li></ul><br>'
-        + '<li>Description of Service: ' + currentRequest.improvement + '</li></ul><br>'
-        + '<li>Description of Service: ' + currentRequest.impact + '</li></ul><br>'
+        + '<li>Beneficiaries: ' + currentRequest.beneficiaries + '</li></ul><br>'
+        + '<li>Improvements: ' + currentRequest.improvement + '</li></ul><br>'
+        + '<li>Impact: ' + currentRequest.impact + '</li></ul><br>'
 
         + "<p>Please submit approval status by visiting <a href='" + url + "'>this link.</a> Use the <b>Service ID Number (" + index + ")</b> to identify the student.</p>"
         + '</body></html>';
@@ -114,6 +115,7 @@ function getApprovalStatus(idNumber){
         var runningTotal = approvalRequest[index].hoursOfService + approvalRequest[index].runningTotal;
         approvalStatus.setValue('Approved'); 
         emailBody = '<head><body>'
+          + '<img style="height:100px;width:100px;" src="http://salesian.schoolwires.net/cms/lib03/CA02001206/Centricity/Domain/2/SHS%20Seal%20New%20600x600.jpg"><br/>'
         + '<p>' + approvalRequest[index].name + ',</p>'
         + '<p>Your Theology teacher, has <b>APPROVED</b> your Christian Service Hour submission, below:</p>'
         + '<ul>'
@@ -122,9 +124,9 @@ function getApprovalStatus(idNumber){
         + '<li>Service Organization: ' + approvalRequest[index].serviceOrganization + '</li>'
         + '<li>Contact Name: ' + approvalRequest[index].contactPerson + '</li>'
         + '<li>Description of Service: ' + approvalRequest[index].description + '</li></ul><br>'
-        + '<li>Description of Service: ' + approvalRequest[index].beneficiaries + '</li></ul><br>'
-        + '<li>Description of Service: ' + approvalRequest[index].improvement + '</li></ul><br>'
-        + '<li>Description of Service: ' + approvalRequest[index].impact + '</li></ul><br>'        
+        + '<li>Beneficiaries: ' + approvalRequest[index].beneficiaries + '</li></ul><br>'
+        + '<li>Improvements: ' + approvalRequest[index].improvement + '</li></ul><br>'
+        + '<li>Impact: ' + approvalRequest[index].impact + '</li></ul><br>'        
         + '<p>At this time, you have performed <b>' + runningTotal + ' hours </b> of approved Christian Service.</p>'
         + '</body></html>';
         emailSubject = 'Your Theology Teacher has APPROVED your Christian Service Hour submission.';
@@ -141,6 +143,7 @@ function getApprovalStatus(idNumber){
         approvalStatus.setValue('Not Approved');
         explanation.setValue(approvalData[i].explanation);
         emailBody = '<head><body>'
+          + '<img style="height:100px;width:100px;" src="http://salesian.schoolwires.net/cms/lib03/CA02001206/Centricity/Domain/2/SHS%20Seal%20New%20600x600.jpg"><br/>'
         + '<p>' + approvalRequest[index].name + ',</p>'
         + '<p>Your Theology teacher, has <b>NOT APPROVED</b> your Christian Service Hour submission, below:</p>'
         + '<ul>'
@@ -149,9 +152,9 @@ function getApprovalStatus(idNumber){
         + '<li>Service Organization: ' + approvalRequest[index].serviceOrganization + '</li>'
         + '<li>Contact Name: ' + approvalRequest[index].contactPerson + '</li>'
         + '<li>Description of Service: ' + approvalRequest[index].description + '</li></ul><br>'
-        + '<li>Description of Service: ' + approvalRequest[index].beneficiaries + '</li></ul><br>'
-        + '<li>Description of Service: ' + approvalRequest[index].improvement + '</li></ul><br>'
-        + '<li>Description of Service: ' + approvalRequest[index].impact + '</li></ul><br>'         
+        + '<li>Beneficiaries: ' + approvalRequest[index].beneficiaries + '</li></ul><br>'
+        + '<li>Improvements: ' + approvalRequest[index].improvement + '</li></ul><br>'
+        + '<li>Impact: ' + approvalRequest[index].impact + '</li></ul><br>'         
         + '<p>Your teacher gave these reasons for not approving this submission:</p>'
         + '<p>' + approvalRequest[index].explanation + '</p><br>'
         + '<p>At this time, you have performed <b>' + approvalRequest[index].runningTotal + ' hours </b> of approved Christian Service.</p>'
